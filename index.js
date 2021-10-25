@@ -18,8 +18,39 @@ s consists of lowercase English letters, digits, and square brackets '[]'.
 s is guaranteed to be a valid input.
 All the integers in s are in the range [1, 300].
 
-
+// code-along by ThinkFWD on YouTube (https://www.youtube.com/watch?v=kNW1SlfDuJY)
+s = "3[a]2[bc]"
 var decodeString = function(s) {
+// const decodeString = (s) => {
+    let multiply = [];
+    let tempMult = '';
+    let repeatStr = [];
+    let solution = '';
+    //3[a2[c]]
+    for (let char of s) {
+        
+        if(!isNaN(char)) {
+            //templte literals to construct these elements
+            tempMult = `${tempMult}${char}`  //3
+        
+        } else if (char === '[') {
+                multiply.push(tempMult); //[3]
+                tempMult = '';
+               
+                repeatStr.push(solution);  //['']
+                solution = '';
+
+            } else if (char === ']') {
+                solution = repeatStr.pop() + solution .repeat(multiply.pop())
+ 
+            } else {
+                solution += char;  //a
+
+            }
+        }
+        return solution;   //return the final response
+
+    }
+  
 
 
-}
